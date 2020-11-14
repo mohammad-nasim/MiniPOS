@@ -59,13 +59,13 @@
 
   <!-- Page level custom scripts -->
   <script src="{{asset('public/assets/js/demo/datatables-demo.js')}}"></script>
-
   <!--  Call the dataTables jQuery plugin -->
   <script>
     $(document).ready(function() {
       $('#dataTable').DataTable();
     });
   </script>
+  @include('sweetalert::alert')
 
   
 </body>

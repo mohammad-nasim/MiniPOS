@@ -37,7 +37,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="{{ route('group-view')}}">Groups</a>
-            <a class="collapse-item" href="{{ route('group-create')}}">Users</a>
+            <a class="collapse-item" href="{{ route('users.index')}}">Users</a>
           </div>
         </div>
       </li>
