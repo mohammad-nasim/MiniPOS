@@ -70,7 +70,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        
+        $this->data['show'] = User::find($id);
+
+        return view('user.show', $this->data);
     }
 
     /**

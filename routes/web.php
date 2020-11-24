@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('layouts.main');
 });
 
-//Group Route
+//UserGroup Route
 Route::prefix('group')->group(function(){
     Route::get('view-group', 'User\UsergroupsController@index')->name('group-view');
     Route::get('create-group', 'User\UsergroupsController@create')->name('group-create');
@@ -31,6 +31,15 @@ Route::prefix('group')->group(function(){
 
 //Users Route
 Route::resource('users', 'User\UsersController');
+
+//Product:categoris
+Route::resource('categories', 'Product\ProductController')->except([
+    'show'
+]);
+
+
+
+
 
 
 

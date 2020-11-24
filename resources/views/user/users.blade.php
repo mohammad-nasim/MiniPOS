@@ -25,7 +25,6 @@
                         <th>Email</th>
                         <th>phone</th>
                         <th>Address</th>
-                        <th>Admin</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -37,7 +36,6 @@
                         <th>Email</th>
                         <th>phone</th>
                         <th>Address</th>
-                        <th>Admin</th>
                         <th>Actions</th>
                     </tr>
                     </tfoot>
@@ -52,22 +50,18 @@
                         <td>{{ $user->email}}</td>
                         <td>{{ $user->phone}}</td>
                         <td>{{ $user->address}}</td>
-                        <td>{{ $user->admin_id}}</td>
                         <td class="text-right" >  
                         
                         <form action="{{ route('users.destroy', $user->id )}}
                         " method="post">
                         @csrf 
                         @method('DELETE')  
-                        
-                        <div class="row">
-                            <div class="col-md-6">
+                                                                
+                                <a href="{{ route('users.show', $user->id)}}" class="btn-sm btn-primary"><i class="fa fa-eye "></i> </a>
+                                                       
                                 <a href="{{ route('users.edit', $user->id)}}" class="btn-sm btn-success"><i class="fa fa-edit "></i> </a>
-                            </div>
-                            <div class="col-md-6">
+                                                       
                                 <button onclick="return confirm('Are you Sure?')" type="submit " class=" text-light btn-sm btn-danger"><i class=" fa fa-trash "></i></button>
-                            </div>
-                        </div>
                         </form>
                         </td>
                     </tr>
