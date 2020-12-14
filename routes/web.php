@@ -37,6 +37,9 @@ Route::resource('categories', 'Product\ProductController')->except([
     'show'
 ]);
 
+//Products:All Products
+Route::resource('product', 'Product\MainProductController');
+
 
 
 
