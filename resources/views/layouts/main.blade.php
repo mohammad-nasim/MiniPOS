@@ -4,7 +4,7 @@
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
-
+        <h2>Welcome to Dashboard</h2>
         <!-- Page Heading -->
         @if(session('message-success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -34,8 +34,6 @@
             </div>
         @endif
         @yield('content')
-
-
 
 
     </div>
