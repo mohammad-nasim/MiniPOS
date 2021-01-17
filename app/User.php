@@ -11,5 +11,25 @@ class User extends Model
     public function group(){
         return $this->belongsTo(UserGroup::class);
     }
+
+    //relationToSalesInvoice
+    public function sales(){
+        return $this->hasMany(SaleInvoice::class);
+    }
+
+    //relationToPurchaseInvoice
+    public function purchase(){
+        return $this->hasMany(PurchesInvoice::class);
+    }
+
+    //relationToPaymentInvoice
+    public function payment(){
+        return $this->hasMany(Payment::class);
+    }
+
+    //relationToReceipsInvoice
+    public function receipts(){
+        return $this->hasMany(Receipt::class);
+    }
 }
 

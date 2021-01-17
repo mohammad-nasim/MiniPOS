@@ -43,6 +43,10 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     //Users Route
     Route::resource('users', 'User\UsersController');
+    Route::get('users/{id}/sales', 'User\UserSalesController@index')->name('user.sale');
+    Route::get('users/{id}/purchase', 'User\UserPurchaseController@index')->name('user.purchase');
+    Route::get('users/{id}/payment', 'User\UserPaymentController@index')->name('user.payment');
+    Route::get('users/{id}/receipts', 'User\UserReceiptsController@index')->name('user.receipts');
 
     //Product:categoris
     Route::resource('categories', 'Product\ProductController')->except([
