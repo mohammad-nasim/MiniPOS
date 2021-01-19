@@ -10,7 +10,11 @@
         <div class="col-md-9 text-right">
             <a href="{{ route('users.create')}}" class="btn btn-info "> <i class="fa fa-plus-circle"></i>New Sale</a>
             <a href="{{ route('users.create')}}" class="btn btn-success "> <i class="fa fa-plus-circle"></i>New Purchase</a>
-            <a href="{{ route('users.create')}}" class="btn btn-warning "> <i class="fa fa-plus-circle"></i>New Payment</a>
+
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#newpayment">
+                <i class="fa fa-plus-circle"></i>New Payment
+            </button>
+            
             <a href="{{ route('users.create')}}" class="btn btn-secondary "> <i class="fa fa-plus-circle"></i>New Receipts</a>
         </div>
     </div>
@@ -30,7 +34,7 @@
             @yield('show.user')
         </div>        
     </div>
-
+    
    
       
 

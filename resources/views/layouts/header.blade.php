@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>MiniPOS</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('public/assets/vendor/sweetalert.css')}}" rel="stylesheet" type="text/css">
