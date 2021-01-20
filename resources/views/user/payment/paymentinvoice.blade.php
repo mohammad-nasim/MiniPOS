@@ -32,43 +32,20 @@
                 <td>{{ $show->name}}</td>
                 <td>{{ $paymentinvoice->amount}} TK</td>
                 <td>{{ $paymentinvoice->note}}</td>
-                <td>{{ $paymentinvoice->date}}</td>
+                <td>{{ $paymentinvoice->id}}</td>
         
                 <td class="text-right" >                            
-                    <form action="{{ route('user.payment.destroy',
+                  <form action="{{ route('user.payment.destroy',
                     ['id' => $show->id, 'payment_id' => $paymentinvoice->id ] )}}
                     " method="post">
                     @csrf 
                     @method('DELETE')
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                    <button onclick=" return confirm('Are want to delete') " type="submit" class="btn btn-danger" >
                       <i class=" fa fa-trash "></i>
                     </button>
-                     {{-- Modal for Delete Confirmation --}}
-
-                      <!-- Modal -->
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <strong class="modal-title text-danger h5 text-center" id="exampleModalLabel">Warning!</strong>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body text-left">
-                            Do you want to delete?
-                          </div>
-                          <div class="modal-footer d-flex flex-row  ">
-                            <button type="button" class="p3 text-right btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class=" p3 btn btn-danger">Confitm</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    </form>
+                  </form>
                 </td>
             </tr>
             @endforeach

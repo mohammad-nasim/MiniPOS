@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     //user receipts
     Route::get('users/{id}/receipts', 'User\UserReceiptsController@index')->name('user.receipts');
+    Route::post('user/{id}/receipts', 'User\UserReceiptsController@store' )->name('user.receipts.store');
+    Route::delete('user/{id}/receipts/{receipts_id}', 'User\UserReceiptsController@destroy' )->name('user.receipts.destroy');
+
 
     //Product:categoris
     Route::resource('categories', 'Product\ProductController')->except([

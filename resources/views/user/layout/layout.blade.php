@@ -15,7 +15,9 @@
                 <i class="fa fa-plus-circle"></i>New Payment
             </button>
             
-            <a href="{{ route('users.create')}}" class="btn btn-secondary "> <i class="fa fa-plus-circle"></i>New Receipts</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#newreceipts">
+                <i class="fa fa-plus-circle"></i>New Receipts
+            </button>
         </div>
     </div>
 
