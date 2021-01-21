@@ -36,9 +36,74 @@
             @yield('show.user')
         </div>        
     </div>
+
+    {{-- Modal for adding new payment --}}
+
+  <!-- Modal -->
+  <div class="modal fade" id="newpayment" tabindex="-1" role="dialog" aria-labelledby="newpaymentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        {!! Form::open(['route' => ['user.payment.store', $show->id ], 'method' => 'post' , 'class' => 'user']) !!}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newpaymentLabel">Add New Payment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">                          
+            <div class="form-group">
+                {{Form::date('date', NULL, ['class' => 'form-control ', 'id' => 'date', 'placeholder' => 'Enter date Address...', 'required'] )}}
+            </div>
+            <div class="form-group">
+                {{Form::text ('amount', NULL,  ['class' => 'form-control ', 'id' => 'amount', 'placeholder' => 'Enter Your amount', 'required'])}}
+            </div>
+            <div class="form-group">
+                {{Form::textarea ('note',NULL, ['class' => 'form-control ', 'id' => 'note', 'rows' => '3',  'placeholder' => 'Enter Your note'])}}
+            </div>
+                                         
+            
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary ">Submit</button>
+        </div>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
     
-   
-      
+   {{-- Modal for adding new receipts --}}
+
+  <!-- Modal -->
+  <div class="modal fade" id="newreceipts" tabindex="-1" role="dialog" aria-labelledby="newreceiptsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        {!! Form::open(['route' => ['user.receipts.store', $show->id ], 'method' => 'post' , 'class' => 'user']) !!}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newreceiptsLabel">Add New Receipts</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">                          
+            <div class="form-group">
+                {{Form::date('date', NULL, ['class' => 'form-control ', 'id' => 'date', 'placeholder' => 'Enter date Address...', 'required'] )}}
+            </div>
+            <div class="form-group">
+                {{Form::text ('amount', NULL,  ['class' => 'form-control ', 'id' => 'amount', 'placeholder' => 'Enter Your amount', 'required'])}}
+            </div>
+            <div class="form-group">
+                {{Form::textarea ('note',NULL, ['class' => 'form-control ', 'id' => 'note', 'rows' => '3',  'placeholder' => 'Enter Your note'])}}
+            </div>
+                                         
+            
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary ">Submit</button>
+        </div>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
 
 
     

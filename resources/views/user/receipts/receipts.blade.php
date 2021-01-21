@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Customer</th>
+                <th>Admin</th>
                 <th>Amout</th>
                 <th>Note</th>
                 <th>Date</th>
@@ -16,7 +17,7 @@
             </thead>
             <tfoot>
             <tr>
-                <th colspan="2" class="text-right">Total : </th>
+                <th colspan="3" class="text-right">Total : </th>
                 <th>{{$show->receipts()->sum('amount')}} TK</th>
                 <th colspan="3"></th>
                 
@@ -29,6 +30,7 @@
             <tr>
                 <td>{{ $key+1}}</td>
                 <td>{{ $show->name}}</td>
+                <td>{{ optional($receiptsinvoice->admin)->name}}</td>
                 <td>{{ $receiptsinvoice->amount}} TK</td>
                 <td>{{ $receiptsinvoice->note}}</td>
                 <td>{{ $receiptsinvoice->date}}</td>
@@ -53,39 +55,9 @@
     </div>
 </div>
 
-{{-- Modal for adding new payment --}}
+{{-- Modal for adding new receipts --}}
 
-  <!-- Modal -->
-  <div class="modal fade" id="newreceipts" tabindex="-1" role="dialog" aria-labelledby="newreceiptsLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        {!! Form::open(['route' => ['user.receipts.store', $show->id ], 'method' => 'post' , 'class' => 'user']) !!}
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="newreceiptsLabel">Add New Receipts</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">                          
-            <div class="form-group">
-                {{Form::date('date', NULL, ['class' => 'form-control ', 'id' => 'date', 'placeholder' => 'Enter date Address...', 'required'] )}}
-            </div>
-            <div class="form-group">
-                {{Form::text ('amount', NULL,  ['class' => 'form-control ', 'id' => 'amount', 'placeholder' => 'Enter Your amount', 'required'])}}
-            </div>
-            <div class="form-group">
-                {{Form::textarea ('note',NULL, ['class' => 'form-control ', 'id' => 'note', 'rows' => '3',  'placeholder' => 'Enter Your note'])}}
-            </div>
-                                         
-            
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary ">Submit</button>
-        </div>
-      </div>
-      {!! Form::close() !!}
-    </div>
-  </div>
+
 
 
 
