@@ -40,7 +40,7 @@
                     </tr>
                     </tfoot>
 
-                    
+
                     <tbody>
                     @foreach($users as $key => $user)
                     <tr>
@@ -50,17 +50,17 @@
                         <td>{{ $user->email}}</td>
                         <td>{{ $user->phone}}</td>
                         <td>{{ $user->address}}</td>
-                        <td class="text-right" >  
-                        
+                        <td class="text-right" >
+
                         <form action="{{ route('users.destroy', $user->id )}}
                         " method="post">
-                        @csrf 
-                        @method('DELETE')  
-                                                                
+                        @csrf
+                        @method('DELETE')
+
                                 <a href="{{ route('users.show', $user->id)}}" class="btn-sm btn-primary"><i class="fa fa-eye "></i> </a>
-                                                       
+
                                 <a href="{{ route('users.edit', $user->id)}}" class="btn-sm btn-success"><i class="fa fa-edit "></i> </a>
-                                                       
+
                                 <button onclick="return confirm('Are you Sure?')" type="submit " class=" text-light btn-sm btn-danger"><i class=" fa fa-trash "></i></button>
                         </form>
                         </td>

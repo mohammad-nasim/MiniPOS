@@ -11,4 +11,20 @@ class Product extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function saleitems(){
+        return $this->hasMany(SaleItems::class);
+    }
+
+    public static function arrForSelect(){
+        $arr = [];
+        $products = Product::all();
+
+        foreach($products as $product){
+            $arr[$product->id] = $product->title;
+        }
+
+        return $arr;
+    }
+
 }

@@ -22,7 +22,7 @@
 
                             <select name="group_id" class="custom-select my-1 mr-sm-2" id="">
                             <option selected>Select Group</option>
-                                @foreach($groups as $key => $data)                               
+                                @foreach($groups as $key => $data)
                                 <option  value="{{ $key }}" {{( $key == $show->group_id ) ? 'selected': '' }} >{{$value="$data"}}</option>
                                 @endforeach
                             </select>

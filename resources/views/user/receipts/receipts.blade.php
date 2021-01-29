@@ -2,12 +2,14 @@
 
 @section('show.user')
 <div class="card-body">
+  <div class="mb-4 h4">
+    Receipt Details of <strong> {{$user->name}} </strong>
+   </div>
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Customer</th>
                 <th>Admin</th>
                 <th>Amout</th>
                 <th>Note</th>
@@ -29,7 +31,6 @@
             @foreach($show->receipts as $key => $receiptsinvoice)
             <tr>
                 <td>{{ $key+1}}</td>
-                <td>{{ $show->name}}</td>
                 <td>{{ optional($receiptsinvoice->admin)->name}}</td>
                 <td>{{ $receiptsinvoice->amount}} TK</td>
                 <td>{{ $receiptsinvoice->note}}</td>

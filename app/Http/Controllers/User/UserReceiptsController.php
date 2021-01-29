@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Receipt;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 
@@ -30,6 +31,7 @@ class UserReceiptsController extends Controller
 
          $formData = $request->all();
          $formData['user_id'] = $user_id;
+         $formData['admin_id'] =  Auth::id();
 
          if(Receipt::Create($formData)){
             session::flash('message-success', 'Receipts Added Successfully');

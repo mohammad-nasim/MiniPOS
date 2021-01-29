@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     //Logout
     Route::get('logout', 'Auth\AuthController@logout')->name('logout');
-    
+
     //UserGroup Route
     Route::prefix('group')->group(function(){
         Route::get('view-group', 'User\UsergroupsController@index')->name('group-view');
@@ -43,7 +43,23 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     //Users Route
     Route::resource('users', 'User\UsersController');
+
+    //Users SaleInvoice
     Route::get('users/{id}/sales', 'User\UserSalesController@index')->name('user.sale');
+
+    Route::post('users/{id}/invoice', 'User\UserSalesController@create')->name('user.sale.create');
+
+    Route::get('users/{id}/invoice/{saleinvoice_id}', 'User\UserSalesController@invoices')->name('user.sale.invoice.details');
+
+    Route::delete('users/{id}/invoice/{saleinvoice_id}', 'User\UserSalesController@invoiceDestroy')->name('user.sale.invoice.destroy');
+    //Users SaleInvoice->Items
+    Route::post('users/{id}/invoice/{saleinvoice_id}', 'User\UserSalesController@addItem')->name('user.invoice.additem');
+
+    Route::delete( 'users/{id}/invoice/{saleinvoice_id}/{item_id}', 'User\UserSalesController@invoiceItemDestroy')->name('user.invoice.deleteitem');
+
+
+
+
 
     //user purchase
     Route::get('users/{id}/purchase', 'User\UserPurchaseController@index')->name('user.purchase');
