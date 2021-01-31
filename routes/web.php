@@ -52,8 +52,10 @@ Route::group(['middleware' => 'auth'] ,function(){
     Route::get('users/{id}/invoice/{saleinvoice_id}', 'User\UserSalesController@invoices')->name('user.sale.invoice.details');
 
     Route::delete('users/{id}/invoice/{saleinvoice_id}', 'User\UserSalesController@invoiceDestroy')->name('user.sale.invoice.destroy');
+
     //Users SaleInvoice->Items
-    Route::post('users/{id}/invoice/{saleinvoice_id}', 'User\UserSalesController@addItem')->name('user.invoice.additem');
+    Route::post('users/{id}/invoice/{saleinvoice_id}', 'User\UserSalesController@addItem')->name('user.invoice.additems');
+
 
     Route::delete( 'users/{id}/invoice/{saleinvoice_id}/{item_id}', 'User\UserSalesController@invoiceItemDestroy')->name('user.invoice.deleteitem');
 
@@ -71,7 +73,7 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     //user receipts
     Route::get('users/{id}/receipts', 'User\UserReceiptsController@index')->name('user.receipts');
-    Route::post('user/{id}/receipts', 'User\UserReceiptsController@store' )->name('user.receipts.store');
+    Route::post('user/{id}/receipts/{saleinvoice_id?}', 'User\UserReceiptsController@store' )->name('user.receipts.store');
     Route::delete('user/{id}/receipts/{receipts_id}', 'User\UserReceiptsController@destroy' )->name('user.receipts.destroy');
 
 

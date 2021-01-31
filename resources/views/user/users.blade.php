@@ -54,14 +54,20 @@
 
                         <form action="{{ route('users.destroy', $user->id )}}
                         " method="post">
+
+                        <a href="{{ route('users.show', $user->id)}}" class="btn-sm btn-primary"><i class="fa fa-eye "></i> </a>
+
+                        <a href="{{ route('users.edit', $user->id)}}" class="btn-sm btn-success"><i class="fa fa-edit "></i> </a>
                         @csrf
                         @method('DELETE')
-
-                                <a href="{{ route('users.show', $user->id)}}" class="btn-sm btn-primary"><i class="fa fa-eye "></i> </a>
-
-                                <a href="{{ route('users.edit', $user->id)}}" class="btn-sm btn-success"><i class="fa fa-edit "></i> </a>
-
-                                <button onclick="return confirm('Are you Sure?')" type="submit " class=" text-light btn-sm btn-danger"><i class=" fa fa-trash "></i></button>
+                        @if(
+                        $user->sales()->count() == 0 &&
+                        $user->purchase()->count() == 0 &&
+                        $user->payment()->count() == 0 &&
+                        $user->receipts()->count() == 0
+                        )
+                            <button onclick="return confirm('Are you Sure?')" type="submit " class=" text-light btn-sm btn-danger"><i class=" fa fa-trash "></i></button>
+                        @endif
                         </form>
                         </td>
                     </tr>

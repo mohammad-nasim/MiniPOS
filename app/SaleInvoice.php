@@ -23,6 +23,11 @@ class SaleInvoice extends Model
         return $this->hasMany(SaleItems::class);
     }
 
+    //relationToReceipt
+    public function receipt(){
+        return $this->hasMany(Receipt::class);
+    }
+
 
 
 

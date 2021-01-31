@@ -6,7 +6,9 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaleInvoiceRequest;
+use App\Http\Requests\InvoiceReceiptRequest;
 use App\Product;
+use App\Receipt;
 use App\SaleInvoice;
 use App\SaleItems;
 use Auth;
@@ -56,6 +58,7 @@ class UserSalesController extends Controller
     $this->data['product'] = Product::arrForSelect();
 
 
+
      //return $this->data['invoice']->admin;
 
         return view('user.sales.salesinvoice', $this->data);
@@ -70,6 +73,8 @@ class UserSalesController extends Controller
     }
 
     //Items:
+
+    //Invoice's Item Add
     public function addItem(Request $request, $user_id, $invoice_id){
         $formData = $request->all();
         $formData['sale_invoice_id'] = $invoice_id;
@@ -80,6 +85,12 @@ class UserSalesController extends Controller
 
             return redirect()->route('user.sale.invoice.details', ['id' => $user_id, 'saleinvoice_id' =>$invoice_id] );
          }
+    }
+
+    //Invoice's Receipt Add
+    public function addReceipt(InvoiceReceiptRequest $request , $user_id, $invoice_id){
+
+        return $request->all();
     }
 
     //Delete Invoice Items

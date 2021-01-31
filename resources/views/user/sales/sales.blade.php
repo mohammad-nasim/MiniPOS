@@ -31,6 +31,7 @@
                 <td>{{ $saleinvoice->note}}</td>
                 <td>
                 <?php
+                    $item = $saleinvoice->saleitems()->sum('quantity');
                     $total = $saleinvoice->saleitems()->sum('total');
                     $grandTotal += $total;
                     echo $total;
@@ -43,12 +44,19 @@
                     <form action="{{ route('user.sale.invoice.destroy',
                     ['id' => $show->id , 'saleinvoice_id' => $saleinvoice->id ])}}
                     " method="post">
-                    @csrf
-                    @method('DELETE')
+
                     <a href="{{ route('user.sale.invoice.details',
                     ['id' => $show->id,'saleinvoice_id' => $saleinvoice->id] )}}" class="btn btn-primary btn-sm">  <i class=" fa fa-eye "></i> </a>
 
+                    @if ($item == 0)
+
+                    @csrf
+                    @method('DELETE')
+
                     <button onclick="return confirm('Are you Sure?')" type="submit " class="btn btn-danger btn-sm"> <i class=" fa fa-trash "></i> </button>
+
+                    @endif
+
                     </form>
                 </td>
             </tr>
@@ -60,8 +68,8 @@
 
                     <th colspan="4" class="text-right">Total</th>
                     <th>{{ $grandTotal }} TK</th>
-                    <th>Date</th>
-                    <th>Actions</th>
+                    <th colspan="2"></th>
+
 
                 </tr>
                 </tfoot>

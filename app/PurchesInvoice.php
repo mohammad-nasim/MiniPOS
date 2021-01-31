@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchesInvoice extends Model
 {
-    //
+    public function purchaseitem(){
+        return $this->hasMany(PurchesItems::class);
+    }
 }

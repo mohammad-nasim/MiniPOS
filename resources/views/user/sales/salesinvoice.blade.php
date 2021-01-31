@@ -1,4 +1,4 @@
-@extends('user.layout.layout')
+@extends('user.layout.invoicelayout')
 
 @section('show.user')
 
@@ -24,33 +24,23 @@
             </div>
             <div class="invoice_items mt-4">
                 <table class="table">
-                    <thead>
+                    <thead >
                         <th>SL</th>
                         <th>Product</th>
                         <th>Price</th>
                         <th>Qty</th>
-                        <th>Total</th>
-                        <th>Action</th>
+                        <th class="text-right">Total</th>
+                        <th class="text-right">Action</th>
                     </thead>
-                    <tfoot>
-                        <th>
-                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#additem">
-                                <i class="fa fa-plus-circle"></i>Add Item
-                              </button>
-                        </th>
-                        <th colspan="3" class="text-right">Total :</th>
-                        <th>{{ $invoice->saleitems->sum('total') }} TK</th>
-                        <th colspan="1"></th>
-                    </tfoot>
-                    <tbody>
+                    <tbody >
                         @foreach ($invoice->saleitems as $key => $item)
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $item->product->title }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->quantity }}</td>
-                            <td>{{ $item->total }} </td>
-                            <td>
+                            <td class="text-right">{{ $item->total }} </td>
+                            <td class="text-right">
                                 <form action="{{
                                     route('user.invoice.deleteitem',
                                     ['id' => $show->id, 'saleinvoice_id' => $invoice->id , 'item_id' => $item->id] )}}
@@ -67,6 +57,31 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    <tr>
+                        <th>
+                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#additem">
+                                <i class="fa fa-plus-circle"></i>Add Product
+                              </button>
+                        </th>
+                        <th colspan="3" class="text-right">Total :</th>
+                        <th class="text-right">{{ $totalPayable =  $invoice->saleitems->sum('total') }} TK</th>
+                        <th colspan="1"></th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#newreceiptsfromInvoice">
+                                <i class="fa fa-plus-circle"></i>Add Receipts
+                              </button>
+                        </th>
+                        <th colspan="3" class="text-right">Paid :</th>
+                        <th class="text-right">{{ $totalPaid = $invoice->receipt->sum('amount') }} TK</th>
+                        <th colspan="1"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="4" class="text-right">Due :</th>
+                        <th class="text-danger text-right">{{ $totalPayable - $totalPaid }} TK</th>
+                        <th colspan="1"></th>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -78,7 +93,8 @@
   <!-- Modal -->
   <div class="modal fade" id="additem" tabindex="-1" role="dialog" aria-labelledby="additemLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        {!! Form::open(['route' => ['user.invoice.additem', ['id' =>$show->id, 'saleinvoice_id' => $invoice->id ] ], 'method' => 'post' , 'class' => 'user']) !!}
+        {!! Form::open
+        (['route' => ['user.invoice.additems', ['id' =>$show->id, 'saleinvoice_id' => $invoice->id ] ], 'method' => 'post' , 'class' => 'user']) !!}
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="additemLabel">Add New Item</h5>
@@ -132,5 +148,54 @@
       {!! Form::close() !!}
     </div>
   </div>
+
+  {{-- Modal for adding new receipts --}}
+
+  <!-- Modal -->
+  <div class="modal fade" id="newreceiptsfromInvoice" tabindex="-1" role="dialog" aria-labelledby="newreceiptsfromInvoiceLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        {!! Form::open(['route' => ['user.receipts.store', ['id' => $show->id, 'saleinvoice_id' => $invoice->id]  ], 'method' => 'post' , 'class' => 'user']) !!}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newreceiptsfromInvoiceLabel">Add Receipts for this Invoice</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                {{Form::date('date', NULL, ['class' => 'form-control ', 'id' => 'date', 'placeholder' => 'Enter date Address...', 'required'] )}}
+            </div>
+            <div class="form-group">
+                {{Form::text ('amount', NULL,  ['class' => 'form-control ', 'id' => 'amount', 'placeholder' => 'Enter Your amount', 'required'])}}
+            </div>
+            <div class="form-group">
+                {{Form::textarea ('note',NULL, ['class' => 'form-control ', 'id' => 'note', 'rows' => '3',  'placeholder' => 'Enter Your note'])}}
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary ">Submit</button>
+        </div>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection
 
