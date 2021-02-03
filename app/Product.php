@@ -16,6 +16,10 @@ class Product extends Model
         return $this->hasMany(SaleItems::class);
     }
 
+    public function purchesitems(){
+        return $this->hasMany(PurchesItems::class);
+    }
+
     public static function arrForSelect(){
         $arr = [];
         $products = Product::all();

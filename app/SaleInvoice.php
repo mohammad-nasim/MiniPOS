@@ -35,4 +35,5 @@ class SaleInvoice extends Model
 
 
 
+
 }

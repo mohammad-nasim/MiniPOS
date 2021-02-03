@@ -1,5 +1,12 @@
 @extends('user.layout.layout')
+@section('back')
+    <div class="col-md-3">
+        <h1 class="h3 mb-4 text-gray-800">
+            <a href="{{ route('users.show', $user->id)}}" class="btn btn-primary "> <i class="fas fa-arrow-left"></i> Back</a>
+        </h1>
 
+    </div>
+@endsection
 @section('show.user')
 <div class="card-body">
   <div class="mb-4 h4">
@@ -22,11 +29,11 @@
                 <th colspan="3" class="text-right">Total : </th>
                 <th>{{$show->receipts()->sum('amount')}} TK</th>
                 <th colspan="3"></th>
-                
+
             </tr>
             </tfoot>
 
-            
+
             <tbody>
             @foreach($show->receipts as $key => $receiptsinvoice)
             <tr>
@@ -35,12 +42,12 @@
                 <td>{{ $receiptsinvoice->amount}} TK</td>
                 <td>{{ $receiptsinvoice->note}}</td>
                 <td>{{ $receiptsinvoice->date}}</td>
-        
-                <td class="text-right" >                            
+
+                <td class="text-right" >
                   <form action="{{ route('user.receipts.destroy',
                     ['id' => $show->id, 'receipts_id' => $receiptsinvoice->id ] )}}
                     " method="post">
-                    @csrf 
+                    @csrf
                     @method('DELETE')
 
                     <!-- Button trigger modal -->

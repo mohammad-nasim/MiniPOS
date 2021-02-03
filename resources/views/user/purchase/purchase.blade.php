@@ -4,11 +4,9 @@
         <h1 class="h3 mb-4 text-gray-800">
             <a href="{{ route('users.show', $user->id)}}" class="btn btn-primary "> <i class="fas fa-arrow-left"></i> Back</a>
         </h1>
-
     </div>
 @endsection
 @section('show.user')
-
 <div class="card-body">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -17,66 +15,59 @@
                 <th>Id</th>
                 <th>Customer</th>
                 <th>Chalan No.</th>
+                <th>Total Items</th>
+                <th>Total Purchase</th>
                 <th>Note</th>
-                <th>Total Sale</th>
                 <th>Date</th>
                 <th>Actions</th>
-
             </tr>
             </thead>
-
+            <?php
+                $grandTotal = 0;
+                $totalItem   = 0;
+            ?>
             <tbody>
-                <?php
-                   $grandTotal = 0;
-                ?>
-            @foreach($show->sales as $key => $saleinvoice)
+            @foreach($purchase->purchase as $key => $purchaseinvoice)
             <tr>
                 <td>{{ $key+1}}</td>
                 <td>{{ $show->name}}</td>
-                <td>{{ $saleinvoice->chalan_no}}</td>
-                <td>{{ $saleinvoice->note}}</td>
+                <td>{{ $purchaseinvoice->chalan_no}}</td>
                 <td>
-                <?php
-                    $item = $saleinvoice->saleitems()->sum('quantity');
-
-                    $total = $saleinvoice->saleitems()->sum('total');
-                    $grandTotal += $total;
-                    echo $total;
-                ?>
+                    <?php
+                       //echo $totalItem . "-";
+                       echo  $items = $purchaseinvoice->purchaseitem()->sum('quantity');
+                        $totalItem += $items;
+                    ?>
                 </td>
-                <td>{{ $saleinvoice->date}}</td>
-
+                <td>
+                    <?php
+                       echo $total = $purchaseinvoice->purchaseitem()->sum('total');
+                        $grandTotal +=$total;
+                    ?>
+                </td>
+                <td>{{ $purchaseinvoice->note}}</td>
+                <td>{{ $purchaseinvoice->date}}</td>
 
                 <td class="text-right" >
-                    <form action="{{ route('user.sale.invoice.destroy',
-                    ['id' => $show->id , 'saleinvoice_id' => $saleinvoice->id ])}}
+                    <form action="{{ route('user.purchase.invoice.destroy', ['id' => $show->id , 'purchaseinvoice_id' => $purchaseinvoice->id ] )}}
                     " method="post">
-
-                    <a href="{{ route('user.sale.invoice.details',
-                    ['id' => $show->id,'saleinvoice_id' => $saleinvoice->id] )}}" class="btn btn-primary btn-sm">  <i class=" fa fa-eye "></i> </a>
-
-                    @if ($item == 0)
-
                     @csrf
                     @method('DELETE')
+                    <a href="{{ route('user.purchase.invoice.details', ['id' => $show->id, 'purchaseinvoice_id' => $purchaseinvoice->id])}}" class="btn btn-primary btn-sm">  <i class=" fa fa-eye "></i> </a>
 
                     <button onclick="return confirm('Are you Sure?')" type="submit " class="btn btn-danger btn-sm"> <i class=" fa fa-trash "></i> </button>
-
-                    @endif
-
                     </form>
                 </td>
             </tr>
             @endforeach
             </tbody>
-
             <tfoot>
                 <tr>
 
-                    <th colspan="4" class="text-right">Total</th>
+                    <th colspan="3"></th>
+                    <th>{{ $totalItem }} Peice</th>
                     <th>{{ $grandTotal }} TK</th>
-                    <th colspan="2"></th>
-
+                    <th colspan="3"></th>
 
                 </tr>
                 </tfoot>

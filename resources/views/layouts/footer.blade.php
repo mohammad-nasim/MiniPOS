@@ -65,9 +65,19 @@
       $('#dataTable').DataTable();
     });
   </script>
+  <!--  Call the PrintFunction -->
+  {{-- <script type="text/javascript">
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        w=window.open();
+        w.document.write(printContents);
+        w.print();
+        w.close();
+    }
+    </script> --}}
   @include('sweetalert::alert')
 
-  
+
 </body>
 
 </html>

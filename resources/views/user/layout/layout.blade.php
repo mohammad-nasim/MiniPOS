@@ -1,19 +1,19 @@
 @extends('layouts.main')
 
 @section('content')
+
     <div class="row clearfix mb-4">
-        <div class="col-md-3">
-            <h1 class="h3 mb-4 text-gray-800">
-                <a href="{{ route('users.index')}}" class="btn btn-primary "> <i class="fas fa-arrow-left"></i> Back</a>
-            </h1>
-        </div>
+        @yield('back')
+
         <div class="col-md-9 text-right">
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newsale">
               <i class="fa fa-plus-circle"></i>New Sale
             </button>
 
-            <a href="{{ route('users.create')}}" class="btn btn-success "> <i class="fa fa-plus-circle"></i>New Purchase</a>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newpurchase">
+                <i class="fa fa-plus-circle"></i>New Purchase
+              </button>
 
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#newpayment">
                 <i class="fa fa-plus-circle"></i>New Payment
@@ -144,7 +144,46 @@
     </div>
   </div>
 
+     {{-- Modal for adding new Purchase --}}
+
+  <!-- Modal -->
+  <div class="modal fade" id="newpurchase" tabindex="-1" role="dialog" aria-labelledby="newpurchaseLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        {!! Form::open(['route' => ['user.purchase.create', $show->id ], 'method' => 'post' , 'class' => 'user']) !!}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newpurchaseLabel">Add New Purchase</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                {{Form::date('date', NULL, ['class' => 'form-control ', 'id' => 'date', 'placeholder' => 'Enter date', 'required'] )}}
+            </div>
+            <div class="form-group">
+                {{Form::text ('chalan_no', NULL,  ['class' => 'form-control ', 'id' => 'chalan_no', 'placeholder' => 'Enter challan_no', 'required'])}}
+            </div>
+            <div class="form-group">
+                {{Form::textarea ('note',NULL, ['class' => 'form-control ', 'id' => 'note', 'rows' => '3',  'placeholder' => 'Enter Your note'])}}
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary ">Submit</button>
+        </div>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+
 
 
 
 @stop
+{{-- <div class="col-md-3">
+    <h1 class="h3 mb-4 text-gray-800">
+        <a href="{{ route('users.index')}}" class="btn btn-primary "> <i class="fas fa-arrow-left"></i> Back</a>
+    </h1>
+</div> --}}

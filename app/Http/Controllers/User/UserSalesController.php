@@ -11,6 +11,7 @@ use App\Product;
 use App\Receipt;
 use App\SaleInvoice;
 use App\SaleItems;
+
 use Auth;
 use Illuminate\Support\Facades\Session;
 

@@ -1,5 +1,11 @@
 @extends('user.layout.layout')
-
+@section('back')
+    <div class="col-md-3">
+        <h1 class="h3 mb-4 text-gray-800">
+            <a href="{{ route('users.index')}}" class="btn btn-primary "> <i class="fas fa-arrow-left"></i> Back to Userlist</a>
+        </h1>
+    </div>
+@endsection
 @section('show.user')
 <!-- Content Row -->
 <div class="row">
@@ -14,8 +20,8 @@
               <div class="h5 mb-0 font-weight-bold text-gray-800">
                 <?php
                     $totalPurchase = 0;
-                    foreach ($show->purchase as $sale) {
-                        $totalPurchase += $sale->purchaseitem()->sum('total');
+                    foreach ($show->purchase as $purchase) {
+                        $totalPurchase += $purchase->purchaseitem()->sum('total');
                     }
                     echo $totalPurchase. " TK";
                 ?>
@@ -38,12 +44,13 @@
               <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Total Sale</div>
               <div class="h5 mb-0 font-weight-bold text-gray-800">
                 <?php
-                    $totalPurchase = 0;
+                     $totalSale = 0;
                     foreach ($show->sales as $sale) {
-                        $totalPurchase += $sale->saleitems()->sum('total');
+                        $totalSale += $sale->saleitems()->sum('total');
                     }
-                    echo $totalPurchase. " TK";
+                    echo $totalSale. " TK";
                 ?>
+
               </div>
             </div>
             <div class="col-auto">

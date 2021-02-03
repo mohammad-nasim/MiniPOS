@@ -2,12 +2,9 @@
 
 @section('content')
     <div class=" clearfix mb-4">
-        <div class="col-md-3">
-            <h1 class="h3 mb-4 text-gray-800">
-                <a href="{{ route('user.sale', $show->id)}}" class="btn btn-primary "> <i class="fas fa-arrow-left"></i> Back</a>
-            </h1>
-        </div>
+        @yield('backfrominvoice')
     </div>
+
 
     <!-- DataTales Example -->
     <div class="row">
