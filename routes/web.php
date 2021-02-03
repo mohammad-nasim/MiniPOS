@@ -87,6 +87,7 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     //Products:All Products
     Route::resource('product', 'Product\MainProductController');
+    Route::get('stock', 'Product\ProductStockController@index')->name('product.stock');
 
 });
 
