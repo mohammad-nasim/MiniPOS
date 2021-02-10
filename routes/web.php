@@ -89,6 +89,11 @@ Route::group(['middleware' => 'auth'] ,function(){
     Route::resource('product', 'Product\MainProductController');
     Route::get('stock', 'Product\ProductStockController@index')->name('product.stock');
 
+    //Reports
+    Route::get('reports/sale', 'Reports\SaleReportsController@saleReports')->name('reports.sale');
+    Route::get('reports/purchase', 'Reports\PurchaseReportsController@purchaseReports')->name('reports.purchase');
+
+
 });
 
 
