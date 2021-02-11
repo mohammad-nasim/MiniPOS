@@ -17,7 +17,6 @@
                 <th>Chalan No.</th>
                 <th>Total Items</th>
                 <th>Total Purchase</th>
-                <th>Note</th>
                 <th>Date</th>
                 <th>Actions</th>
             </tr>
@@ -45,8 +44,7 @@
                         $grandTotal +=$total;
                     ?>
                 </td>
-                <td>{{ $purchaseinvoice->note}}</td>
-                <td>{{ $purchaseinvoice->date}}</td>
+                <td>{{ Carbon\Carbon::parse($purchaseinvoice->date)->toFormattedDateString() }}</td>
 
                 <td class="text-right" >
                     <form action="{{ route('user.purchase.invoice.destroy', ['id' => $show->id , 'purchaseinvoice_id' => $purchaseinvoice->id ] )}}

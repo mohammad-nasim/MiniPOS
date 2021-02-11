@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Reports;
 use App\Http\Controllers\Controller;
 use App\SaleItems;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class SaleReportsController extends Controller
 {
     //viewSaleReports
@@ -19,6 +19,10 @@ class SaleReportsController extends Controller
         ->join('sale_invoices', 'sale_items.sale_invoice_id', '=', 'sale_invoices.id' )
         ->whereBetween('sale_invoices.date', [$this->data['start_date'], $this->data['end_date']]  )
         ->get();
+
+        if(count($this->data['salereports'])  < 1){
+            session::flash('message-warning', 'No Sale Report Created Today');
+        }
 
         return view('reports.salereports', $this->data);
     }

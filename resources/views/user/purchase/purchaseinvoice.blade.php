@@ -24,7 +24,7 @@
 
                 </div>
                 <div class="col-md-4">
-                    <span><strong> Date  </strong> : {{ $invoice->date }}<br>
+                    <span><strong> Date  </strong> : {{ Carbon\Carbon::parse($invoice->date)->toFormattedDateString() }}<br>
                     <span><strong> Challan No.</strong> : {{ $invoice->chalan_no }}
                 </div>
             </div>

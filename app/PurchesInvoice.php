@@ -8,6 +8,7 @@ class PurchesInvoice extends Model
 {
     protected $fillable = ['user_id', 'admin_id', 'chalan_no', 'note', 'date'];
 
+
     //relationToUser
     public function users(){
         return $this->belongsTo(User::class);

@@ -42,7 +42,7 @@
                 <td>{{ ($paymentinvoice->admin_id)? $paymentinvoice->admin->name : ""}}</td>
                 <td>{{ $paymentinvoice->amount}} TK</td>
                 <td>{{ $paymentinvoice->note}}</td>
-                <td>{{ $paymentinvoice->date}}</td>
+                <td>{{ Carbon\Carbon::parse($paymentinvoice->date)->toFormattedDateString() }}</td>
 
                 <td class="text-right" >
                   <form action="{{ route('user.payment.destroy',

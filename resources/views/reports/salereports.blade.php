@@ -25,7 +25,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Sales Report from <strong class="text-danger">{{ $start_date }}</strong>  TO <strong class="text-danger">{{ $end_date }}</strong></h6>
+            <h6 class="m-0 font-weight-bold text-dark">Sales Report from <strong class="text-danger">{{ Carbon\Carbon::parse($start_date)->toFormattedDateString() }}</strong>  TO <strong class="text-danger">{{ Carbon\Carbon::parse($end_date)->toFormattedDateString() }}</strong></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -42,7 +42,7 @@
                     <tbody>
                     @foreach($salereports as $key => $sale)
                     <tr>
-                        <td>{{ optional($sale)->date }}</td>
+                        <td>{{ Carbon\Carbon::parse($sale->date)->toFormattedDateString() }}</td>
                         <td>{{ $sale->product->title }}</td>
                         <td  class="text-center" >{{ $sale->quantity }}</td>
                         <td class="text-right">{{ $sale->price }}</td>

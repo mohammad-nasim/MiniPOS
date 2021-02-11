@@ -41,7 +41,7 @@
                 <td>{{ optional($receiptsinvoice->admin)->name}}</td>
                 <td>{{ $receiptsinvoice->amount}} TK</td>
                 <td>{{ $receiptsinvoice->note}}</td>
-                <td>{{ $receiptsinvoice->date}}</td>
+                <td>{{ Carbon\Carbon::parse($receiptsinvoice->date)->toFormattedDateString() }}</td>
 
                 <td class="text-right" >
                   <form action="{{ route('user.receipts.destroy',

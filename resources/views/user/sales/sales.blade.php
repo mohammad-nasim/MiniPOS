@@ -44,7 +44,7 @@
                     echo $total;
                 ?>
                 </td>
-                <td>{{ $saleinvoice->date}}</td>
+                <td>{{ Carbon\Carbon::parse($saleinvoice->date)->toFormattedDateString() }}</td>
 
 
                 <td class="text-right" >
