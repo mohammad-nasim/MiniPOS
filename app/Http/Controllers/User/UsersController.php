@@ -14,6 +14,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +55,7 @@ class UsersController extends Controller
         $email    = $request->email;
         $phone    = $request->phone;
         $address  = $request->address;
-       
+
         if( User::create([
             'group_id' => $group_id,
             'name'     => $name,
@@ -73,7 +78,7 @@ class UsersController extends Controller
         $this->data['show'] = User::find($id);
         $this->data['user'] = User::find($id);
         $this->data['tab_menu'] = "user_info";
-        
+
         return view('user.show', $this->data);
     }
 
@@ -101,7 +106,7 @@ class UsersController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        $data = $request->all();  
+        $data = $request->all();
 
         $user = User::find($id);
         $user->group_id = $data['group_id'];
@@ -115,9 +120,9 @@ class UsersController extends Controller
             return redirect()->route('users.index');
         }
 
-      
 
-        
+
+
     }
 
     /**

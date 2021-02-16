@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', function () {
     // return Auth::user();
-    return view('layouts.main');
+    $this->data['main_menu'] = '';
+    $this->data['sub_menu'] = '';
+    return view('layouts.main', $this->data);
 });
 
 //Auth
@@ -91,8 +93,12 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     //Reports
     Route::get('reports/sale', 'Reports\SaleReportsController@saleReports')->name('reports.sale');
+
     Route::get('reports/purchase', 'Reports\PurchaseReportsController@purchaseReports')->name('reports.purchase');
 
+    Route::get('reports/payment', 'Reports\PaymentReportsController@paymentReports')->name('reports.payment');
+
+    Route::get('reports/receipt', 'Reports\ReceiptReportsController@receiptReports')->name('reports.receipt');
 
 });
 

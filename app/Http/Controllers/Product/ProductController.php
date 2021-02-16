@@ -12,6 +12,12 @@ use App\Product;
 use Illuminate\Support\Facades\Session;
 class ProductController extends Controller
 {
+
+    public function __construct(){
+        parent::__construct();
+        $this->data['main_menu'] = 'Product';
+        $this->data['sub_menu'] = 'product';
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +27,7 @@ class ProductController extends Controller
     {
         $this->data['categories'] = Category::all();
         return view('category.categories', $this->data);
-        
+
     }
 
     /**
@@ -44,7 +50,7 @@ class ProductController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        
+
        $data = new Category();
        $group_title = $request->title;
        $data->title = $group_title;
@@ -77,7 +83,7 @@ class ProductController extends Controller
     {
         $this->data['title'] = "Update Category";
         $this->data['data'] = Category::findorfail($id);
-        $this->data['mode']  = 'edit'; 
+        $this->data['mode']  = 'edit';
 
         return view('category.form', $this->data);
     }
@@ -94,13 +100,13 @@ class ProductController extends Controller
        $title = $request->title;
 
        $category = Category::findorfail($id);
-       $category->title = $title; 
+       $category->title = $title;
 
        if($category->save()){
         session::flash('message-success', 'Category Updated Successfully');
         return redirect()->route('categories.index');
        }
-       
+
     }
 
     /**

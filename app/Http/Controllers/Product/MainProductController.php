@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 use Session;
 class MainProductController extends Controller
 {
+    public function __construct(){
+        parent::__construct();
+        $this->data['main_menu'] = 'Product';
+        $this->data['sub_menu'] = 'category';
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,10 +50,10 @@ class MainProductController extends Controller
     {
         $formData = $request->all();
 
-        if(Product::create($formData)){  
+        if(Product::create($formData)){
             session::flash('message-success', 'Product Created Successfully');
             return redirect()->route('product.index');
-            
+
         }
     }
 
@@ -115,10 +120,10 @@ class MainProductController extends Controller
     public function destroy($id)
     {
 
-        if(Product::find($id)->delete()){  
+        if(Product::find($id)->delete()){
             session::flash('message-danger', 'Product Deleted Successfully');
             return redirect()->route('product.index');
-            
+
         }
     }
 }

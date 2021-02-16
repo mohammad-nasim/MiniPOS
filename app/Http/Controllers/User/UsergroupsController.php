@@ -9,6 +9,12 @@ use Session;
 
 class UsergroupsController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->data['sub_menu'] = 'groups';
+    }
+
     //view
     public function index(){
         $this->data['groups'] = UserGroup::all();
@@ -17,7 +23,7 @@ class UsergroupsController extends Controller
 
     //creat
     public function create(){
-       return view('group.create');
+       return view('group.create', $this->data);
     }
 
     //insert
@@ -27,7 +33,7 @@ class UsergroupsController extends Controller
         if(UserGroup::create($groupName)){
             session::flash('message-success', 'Group Created Successfully');
             return redirect()->route('group-view');
-        }      
+        }
     }
 
     //edit
@@ -54,6 +60,6 @@ class UsergroupsController extends Controller
             session::flash('message-danger', 'Group Deleted Successfully');
             return redirect()->route('group-view');
         }
-        
+
     }
 }

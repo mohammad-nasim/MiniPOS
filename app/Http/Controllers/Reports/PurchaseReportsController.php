@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Session;
 
 class PurchaseReportsController extends Controller
 {
+    public function __construct(){
+        parent::__construct();
+        $this->data['main_menu'] = 'Reports';
+        $this->data['sub_menu']  = 'Purchase';
+    }
 
     //viewPurchaseReports
     public function purchaseReports(Request $request){

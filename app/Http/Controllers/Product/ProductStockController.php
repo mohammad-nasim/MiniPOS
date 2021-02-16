@@ -8,6 +8,13 @@ use App\Product;
 
 class ProductStockController extends Controller
 {
+
+    public function __construct(){
+        parent::__construct();
+        $this->data['main_menu'] = 'Product';
+        $this->data['sub_menu'] = 'stock';
+    }
+
     //ViewStock
     public function index(){
       $this->data['products'] = Product::all();

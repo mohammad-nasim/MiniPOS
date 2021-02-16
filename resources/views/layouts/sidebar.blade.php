@@ -28,48 +28,46 @@
       </div>
 
       <!-- Nav Item - Users Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item @if($main_menu == 'User') active @endif">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-users"></i>
           <span>Users</span>
         </a>
-        <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseOne" class="collapse @if($main_menu == 'User') show @endif"" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="{{ route('group-view')}}">Groups</a>
-            <a class="collapse-item" href="{{ route('users.index')}}">Users</a>
+            <a class="collapse-item @if($sub_menu == 'groups') active @endif" href="{{ route('group-view')}}">Groups</a>
+            <a class="collapse-item @if($sub_menu == 'users') active @endif" href="{{ route('users.index')}}">Users</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Product Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item @if($main_menu == 'Product') active @endif ">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Products</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse @if($main_menu == 'Product') show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="{{ route('categories.index')}}"> Categories</a>
-            <a class="collapse-item" href="{{ route('product.index')}}">Products</a>
-            <a class="collapse-item" href="{{ route('product.stock')}}">Stock</a>
+            <a class="collapse-item @if($sub_menu == 'product') active @endif" href="{{ route('categories.index')}}"> Categories</a>
+            <a class="collapse-item @if($sub_menu == 'category') active @endif" href="{{ route('product.index')}}">Products</a>
+            <a class="collapse-item @if($sub_menu == 'stock') active @endif" href="{{ route('product.stock')}}">Stock</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Reports Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item @if($main_menu == 'Reports') active @endif">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport" aria-expanded="true" aria-controls="collapseReport">
           <i class="fas fa-fw fa-cog"></i>
           <span>Reports</span>
         </a>
-        <div id="collapseReport" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseReport" class="collapse @if($main_menu == 'Reports') show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="{{ route('reports.sale')}}"> Sale Reports</a>
-            <a class="collapse-item" href="{{ route('reports.purchase')}}">Purchase Reports</a>
-            <a class="collapse-item" href="{{ route('product.stock')}}">Stock</a>
+            <a class="collapse-item @if($sub_menu == 'Sale') active @endif " href="{{ route('reports.sale')}}"> Sale Reports</a>
+            <a class="collapse-item @if($sub_menu == 'Purchase') active @endif" href="{{ route('reports.purchase')}}">Purchase Reports</a>
+            <a class="collapse-item @if($sub_menu == 'Payment') active @endif " href="{{ route('reports.payment')}}">Payment Reports</a>
+            <a class="collapse-item @if($sub_menu == 'Receipt') active @endif " href="{{ route('reports.receipt')}}">Receipts Reports</a>
           </div>
         </div>
       </li>

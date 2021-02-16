@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 class SaleReportsController extends Controller
 {
+    public function __construct(){
+        parent::__construct();
+        $this->data['main_menu'] = 'Reports';
+        $this->data['sub_menu']  = 'Sale';
+    }
+
     //viewSaleReports
     public function saleReports(Request $request){
 

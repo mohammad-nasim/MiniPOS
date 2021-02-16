@@ -14,8 +14,10 @@ use Symfony\Component\Mime\Part\Multipart\FormDataPart;
 class UserPaymentController extends Controller
 {
 
+
     public function __construct()
     {
+        parent::__construct();
         $this->data['tab_menu'] = "payment";
     }
 
