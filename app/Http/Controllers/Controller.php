@@ -17,6 +17,7 @@ class Controller extends BaseController
     {
         $this->data['main_menu'] = 'User';
         $this->data['sub_menu'] = 'users';
+        $this->data['dashboard'] = 'dashboard';
         $this->data['tab_menu'] = '';
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\nasimController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,12 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('dashboard', function () {
-    // return Auth::user();
-    $this->data['main_menu'] = '';
-    $this->data['sub_menu'] = '';
-    return view('layouts.main', $this->data);
-});
+
 
 //Auth
 Route::get('login', 'Auth\AuthController@login' )->name('login');
@@ -31,6 +27,17 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     //Logout
     Route::get('logout', 'Auth\AuthController@logout')->name('logout');
+
+    //Dashboardss
+    Route::get('/', 'Dashboard\DashboardController@index');
+    Route::get('dashboard', 'Dashboard\DashboardController@index');
+
+    // Route::get('dashboard', function () {
+    //     // return Auth::user();
+    //     $this->data['main_menu'] = '';
+    //     $this->data['sub_menu'] = '';
+    //     return view('layouts.main', $this->data);
+    // });
 
     //UserGroup Route
     Route::prefix('group')->group(function(){
