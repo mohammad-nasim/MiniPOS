@@ -64,10 +64,12 @@
         </a>
         <div id="collapseReport" class="collapse @if($main_menu == 'Reports') show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item @if($sub_menu == 'dayreports') active @endif " href="{{ route('reports.day')}}">Day Reports</a>
             <a class="collapse-item @if($sub_menu == 'Sale') active @endif " href="{{ route('reports.sale')}}"> Sale Reports</a>
             <a class="collapse-item @if($sub_menu == 'Purchase') active @endif" href="{{ route('reports.purchase')}}">Purchase Reports</a>
             <a class="collapse-item @if($sub_menu == 'Payment') active @endif " href="{{ route('reports.payment')}}">Payment Reports</a>
             <a class="collapse-item @if($sub_menu == 'Receipt') active @endif " href="{{ route('reports.receipt')}}">Receipts Reports</a>
+
           </div>
         </div>
       </li>

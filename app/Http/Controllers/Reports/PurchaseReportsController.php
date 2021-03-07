@@ -26,10 +26,10 @@ class PurchaseReportsController extends Controller
 
 
         $this->data['purchasereports'] = PurchesItems::select('purches_items.*', 'purches_invoices.date', 'products.title')
-        ->join('products', 'purches_items.product_id', '=', 'products.id')
-        ->join('purches_invoices', 'purches_items.purches_invoice_id', '=', 'purches_invoices.id' )
-        ->whereBetween('purches_invoices.date', [$this->data['start_date'] , $this->data['end_date']] )
-        ->get();
+                                                     ->join('products', 'purches_items.product_id', '=', 'products.id')
+                                                     ->join('purches_invoices', 'purches_items.purches_invoice_id', '=', 'purches_invoices.id' )
+                                                     ->whereBetween('purches_invoices.date', [$this->data['start_date'] , $this->data['end_date']] )
+                                                     ->get();
 
         // $this->data['start_date'] = $startDate->toFormattedDateString();
         // $this->data['end_date']   = $endDate->toFormattedDateString();

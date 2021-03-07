@@ -107,6 +107,7 @@ Route::group(['middleware' => 'auth'] ,function(){
 
     Route::get('reports/receipt', 'Reports\ReceiptReportsController@receiptReports')->name('reports.receipt');
 
+    Route::get('reports/dayreport', 'Reports\DayReportsController@dayReports')->name('reports.day');
 });
 
 
